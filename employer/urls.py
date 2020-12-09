@@ -20,7 +20,6 @@ from django.urls import path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('kaziapp.urls')),
-    path('accounts/', include('registration.backends.simple.urls')),
-    path('logout/$', views.logout, {"next_page": '/'}),
-    path('tinymce/', include('tinymce.urls')),
+    path('accounts/', include('django_registration.backends.one_step.urls')),
+
 ]

@@ -1,0 +1,60 @@
+
+
+{%extends 'jobs/base.html'%}
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+  <div class="row">
+      {% for applican in applicant %}
+    <div class="col-md-4">
+      <div class="card mt-4">
+        <div class="card-header text-center">
+            <h4> PROFFESION:{{ applican.job }} </h4>
+        </div>
+        <div class="">
+            <img src="{{applican.picture.url}}" alt="{{applican.job}}" class="img-responsive img-fluid" data-toggle="modal" data-target="#extraModal{{applican.id}}" style="width: 100%; height: 200px;">
+        </div>
+            <div class="card-title">
+                <h4>Employer:{{applican.first_name}}</h4>
+                <h4 style="color:blue">description:{{applican.descriptions }}</h4>
+              </div>
+      </div>
+    </div>
+     <!-- Modal -->
+     <div class="modal fade" id="extraModal{{applican.id}}" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-scrollable" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalScrollableTitle"> company name:{{ applican.company }}</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+           <div class="card" style="width: 18rem;" >
+             <img src="{{ applican.picture.url }}" class="card-img-top" alt="..." >
+             <div class="card-body">
+               <h5 class="card-title"> Company:{{applican.company}}</h5>
+               <p class="card-text">description:{{applican.descpritions }}</p>
+               <p class="card-text">pay ksh:{{applican.pay }}</p>
+               <p class="card-text">email:{{applican.email }}</p>
+               <input type="text" value="{{applican.contact}}" id="copypaste" class="form-control">
+             </div>
+           </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <input class="form-control input-lg" type="text"
+                value="{{applican.contact}}" id="{{applican.id}}">
+            <button class="btn btn-success btn-sm" onclick="copyLink('{{applican.id}}')">Copy</button>
+                                    
+         </div>
+       </div>
+     </div>
+   </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
